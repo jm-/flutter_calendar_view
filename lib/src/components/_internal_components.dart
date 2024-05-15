@@ -391,9 +391,9 @@ class EventGenerator<T extends Object?> extends StatelessWidget {
         left: events[index].left,
         right: events[index].right,
         child: GestureDetector(
-          onLongPress: () => onTileLongTap?.call(events[index].events, date),
-          onTap: () => onTileTap?.call(events[index].events, date),
-          onDoubleTap: () => onTileDoubleTap?.call(events[index].events, date),
+          onLongPress: onTileLongTap != null ? () => onTileLongTap!(events[index].events, date) : null,
+          onTap: onTileTap != null ? () => onTileTap!(events[index].events, date) : null,
+          onDoubleTap: onTileDoubleTap != null ? () => onTileDoubleTap!(events[index].events, date) : null,
           child: Builder(builder: (context) {
             if (scrollNotifier.shouldScroll &&
                 events[index]
@@ -516,7 +516,7 @@ class PressDetector extends StatelessWidget {
               bottom: height - (heightPerSlot * (i + 1)),
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () => onDateTap?.call(
+                onTap: onDateTap != null ? () => onDateTap!(
                   DateTime(
                     date.year,
                     date.month,
@@ -524,8 +524,8 @@ class PressDetector extends StatelessWidget {
                     0,
                     minuteSlotSize.minutes * i,
                   ),
-                ),
-                onLongPress: () => onDateLongPress?.call(
+                ) : null,
+                onLongPress: onDateLongPress != null ? () => onDateLongPress!(
                   DateTime(
                     date.year,
                     date.month,
@@ -533,7 +533,7 @@ class PressDetector extends StatelessWidget {
                     0,
                     minuteSlotSize.minutes * i,
                   ),
-                ),
+                ) : null,
                 child: SizedBox(width: width, height: heightPerSlot),
               ),
             ),

@@ -163,12 +163,12 @@ class DefaultPressDetector extends StatelessWidget {
               bottom: height - (heightPerSlot * (i + 1)),
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onLongPress: () => onDateLongPress?.call(
+                onLongPress: onDateLongPress != null ? () => onDateLongPress!(
                   getSlotDateTime(i),
-                ),
-                onTap: () => onDateTap?.call(
+                ) : null,
+                onTap: onDateTap != null ? () => onDateTap!(
                   getSlotDateTime(i),
-                ),
+                ) : null,
                 child: SizedBox(
                   width: width,
                   height: heightPerSlot,
