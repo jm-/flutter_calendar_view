@@ -34,6 +34,9 @@ class RoundedEventTile extends StatelessWidget {
   /// Margin of the tile. Default margin is [EdgeInsets.zero]
   final EdgeInsets margin;
 
+  // Border of the tile.
+  final BoxBorder? border;
+
   /// Border radius of tile.
   final BorderRadius borderRadius;
 
@@ -50,6 +53,7 @@ class RoundedEventTile extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
     this.description,
+    this.border,
     this.borderRadius = BorderRadius.zero,
     this.totalEvents = 1,
     this.backgroundColor = Colors.blue,
@@ -64,6 +68,7 @@ class RoundedEventTile extends StatelessWidget {
       margin: margin,
       decoration: BoxDecoration(
         color: backgroundColor,
+        border: border,
         borderRadius: borderRadius,
       ),
       child: Column(

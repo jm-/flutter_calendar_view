@@ -33,6 +33,9 @@ class CalendarEventData<T extends Object?> {
   /// This color will be used in default widgets provided by plugin.
   final Color color;
 
+  // Defines a stripe of color which is optionally applied to the event.
+  final Color? stripeColor;
+
   /// Event on [date].
   final T? event;
 
@@ -51,6 +54,7 @@ class CalendarEventData<T extends Object?> {
     this.description,
     this.event,
     this.color = Colors.blue,
+    this.stripeColor,
     this.startTime,
     this.endTime,
     this.titleStyle,
@@ -111,6 +115,7 @@ class CalendarEventData<T extends Object?> {
     String? description,
     T? event,
     Color? color,
+    Color? stripeColor,
     DateTime? startTime,
     DateTime? endTime,
     TextStyle? titleStyle,
@@ -124,6 +129,7 @@ class CalendarEventData<T extends Object?> {
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       color: color ?? this.color,
+      stripeColor: stripeColor ?? this.stripeColor,
       description: description ?? this.description,
       descriptionStyle: descriptionStyle ?? this.descriptionStyle,
       endDate: endDate ?? this.endDate,
@@ -152,6 +158,7 @@ class CalendarEventData<T extends Object?> {
                 endTime!.hasSameTimeAs(other.endTime!))) &&
         title == other.title &&
         color == other.color &&
+        stripeColor == other.stripeColor &&
         titleStyle == other.titleStyle &&
         descriptionStyle == other.descriptionStyle &&
         description == other.description;
@@ -163,6 +170,7 @@ class CalendarEventData<T extends Object?> {
       descriptionStyle.hashCode ^
       titleStyle.hashCode ^
       color.hashCode ^
+      stripeColor.hashCode ^
       title.hashCode ^
       date.hashCode;
 }
